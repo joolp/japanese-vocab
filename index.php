@@ -28,6 +28,9 @@ $pairs = array_intersect_key($images, $texts);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Style Gallery</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <style>
         /* Global Styles */
         * {
@@ -135,8 +138,8 @@ $pairs = array_intersect_key($images, $texts);
         }
 
         /* Textarea Styling */
-        .text-container textarea {
-            flex: 1; /* Makes textarea take full height */
+        .text-container .textbox {
+            flex: 1; /* Makes div class="markdown textbox" take full height */
             width: 100%;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -148,6 +151,7 @@ $pairs = array_intersect_key($images, $texts);
 
             margin-top: 10px;
             margin-bottom: 10px;
+
         }
 
         /* Responsive Design */
@@ -181,7 +185,7 @@ $pairs = array_intersect_key($images, $texts);
                 margin: 20px 0;
             }
 
-            .text-container textarea {
+            .text-container .textbox {
                 height: 150px; /* Set fixed height for mobile */
             }
         }
@@ -246,7 +250,7 @@ $pairs = array_intersect_key($images, $texts);
                 <div class="text-container">
                     <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
                     <div class="text-content">
-                        <textarea readonly wrap="soft"><?= htmlspecialchars(file_get_contents("$dir/" . $texts[$name])) ?></textarea>
+                        <div class="markdown textbox"><?= htmlspecialchars(file_get_contents("$dir/" . $texts[$name])) ?></div>
                     </div>
                 </div>
             </div>
@@ -290,6 +294,34 @@ $pairs = array_intersect_key($images, $texts);
                 button.textContent = "Show Text";
             }
         }
+
+        function convertMarkdown() {
+            let mds = document.querySelectorAll(".markdown");
+            mds.forEach(md => {
+                md.innerHTML = marked.parse(md.innerHTML);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            convertMarkdown();
+        });
+
+        function adjustHeight() {
+            document.querySelectorAll(".section").forEach(section => {
+                const img = section.querySelector("img");
+                const textContainer = section.querySelector(".text-container");
+
+                if (img && textContainer) {
+                    textContainer.style.maxHeight = img.clientHeight + "px"; // Limit height to image height
+                    textContainer.style.overflow = "auto"; // Enable scrolling if content overflows
+                }
+            });
+        }
+
+        // Run when page loads and when window resizes
+        window.addEventListener("load", adjustHeight);
+        window.addEventListener("resize", adjustHeight);
+
     </script>
 </body>
 </html>

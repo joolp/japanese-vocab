@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Style Gallery</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <style>
         /* Global Styles */
         * {
@@ -111,8 +114,8 @@
         }
 
         /* Textarea Styling */
-        .text-container textarea {
-            flex: 1; /* Makes textarea take full height */
+        .text-container .textbox {
+            flex: 1; /* Makes div class="markdown textbox" take full height */
             width: 100%;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -124,6 +127,7 @@
 
             margin-top: 10px;
             margin-bottom: 10px;
+
         }
 
         /* Responsive Design */
@@ -157,7 +161,7 @@
                 margin: 20px 0;
             }
 
-            .text-container textarea {
+            .text-container .textbox {
                 height: 150px; /* Set fixed height for mobile */
             }
         }
@@ -205,55 +209,48 @@
     <div class="sidebar">
         <ul>
                             <li onclick="scrollToSection(0)">
-                    girl                    
+                    cherry-girl                    
                 </li>
                             <li onclick="scrollToSection(1)">
                     hyoon                    
+                </li>
+                            <li onclick="scrollToSection(2)">
+                    jojo                    
                 </li>
                     </ul>
     </div>
     <div class="container">
                     <div class="section">
                 <div class="image-container">
-                    <img src="res/girl.jpg" alt="Image for girl">
+                    <img src="res/cherry-girl.jpg" alt="Image for cherry-girl">
                 </div>
                 <div class="divider"></div>
                 <div class="text-container">
                     <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
                     <div class="text-content">
-                        <textarea readonly wrap="soft">- 写真 (しゃしん, shashin) – Photograph, picture
-- 桜 (さくら, sakura) – Cherry blossoms
-- 木 (き, ki) – Tree
-- 下 (した, shita) – Under, beneath
-- 若い (わかい, wakai) – Young
-- 女性 (じょせい, josei) – Woman, female
-- 写る (うつる, utsuru) – To be photographed, to appear in a photo
-- 着る (きる, kiru) – To wear (clothes)
-- ダークブルー (dāku burū) – Dark blue
-- チェック柄 (チェックがら, chekku gara) – Checkered pattern
-- ブレザー (burezā) – Blazer
-- 長い (ながい, nagai) – Long
-- 黒髪 (くろかみ, kurokami) – Black hair
-- なびかせる (nabikaseru) – To let (hair, fabric) flutter/sway
-- 表情 (ひょうじょう, hyōjō) – Facial expression
-- 穏やか (おだやか, odayaka) – Calm, gentle
-- 遠く (とおく, tōku) – Far away, distance
-- 見つめる (みつめる, mitsumeru) – To gaze at, to stare
-- 物思い (ものおもい, mono omoi) – Thoughtfulness, contemplation
-- ふける (fukeru) – To be absorbed in (thought)
-- 手すり (てすり, tesuri) – Handrail
-- 寄りかかる (よりかかる, yorikakaru) – To lean on
-- 楽しむ (たのしむ, tanoshimu) – To enjoy
-- 風景 (ふうけい, fūkei) – Scenery, landscape
-- 満開 (まんかい, mankai) – Full bloom
-- 広がる (ひろがる, hirogaru) – To spread, to extend
-- 柔らかい (やわらかい, yawarakai) – Soft, gentle
-- 光 (ひかり, hikari) – Light
-- 包み込む (つつみこむ, tsutsumikomu) – To envelop, to wrap around
-- 幻想的 (げんそうてき, gensōteki) – Fantastical, dreamy
-- 春 (はる, haru) – Spring (season)
-- 優雅 (ゆうが, yūga) – Elegant, graceful
-- 雰囲気 (ふんいき, fun&#039;iki) – Atmosphere, ambiance</textarea>
+                        <div class="markdown textbox">この画像には、桜の木の下で手すりに寄りかかりながら上を見つめる若い女性が写っています。彼女は長い黒髪を持ち、制服のようなチェック柄のブレザーを着ています。背景には満開の桜が広がり、全体的に春らしい穏やかで幻想的な雰囲気が感じられます。彼女の表情は優しく、何かを思い巡らせているように見えます。
+
+
+- **画像** (がぞう, gazou) – Image, Picture  
+- **桜** (さくら, sakura) – Cherry blossoms  
+- **木** (き, ki) – Tree  
+- **手すり** (てすり, tesuri) – Handrail  
+- **寄りかかる** (よりかかる, yorikakaru) – To lean on  
+- **若い** (わかい, wakai) – Young  
+- **女性** (じょせい, josei) – Woman, Female  
+- **黒髪** (くろかみ, kurokami) – Black hair  
+- **制服** (せいふく, seifuku) – Uniform  
+- **チェック柄** (ちぇっくがら, chekku gara) – Checkered pattern  
+- **ブレザー** (ぶれざー, burezaa) – Blazer  
+- **背景** (はいけい, haikei) – Background  
+- **満開** (まんかい, mankai) – Full bloom  
+- **春** (はる, haru) – Spring  
+- **穏やか** (おだやか, odayaka) – Calm, Gentle  
+- **幻想的** (げんそうてき, gensouteki) – Fantasy-like, Dreamy  
+- **表情** (ひょうじょう, hyoujou) – Facial expression  
+- **優しい** (やさしい, yasashii) – Gentle, Kind  
+- **思い巡らせる** (おもいめぐらせる, omoimeguraseru) – To ponder, Reflect  
+</div>
                     </div>
                 </div>
             </div>
@@ -265,35 +262,58 @@
                 <div class="text-container">
                     <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
                     <div class="text-content">
-                        <textarea readonly wrap="soft">- 画像 (がぞう, gazou) – Image, picture
-- 女性 (じょせい, josei) – Woman, female
-- 室内 (しつない, shitsunai) – Indoors, inside a room
-- 自撮り (じどり, jidori) – Selfie
-- 長い (ながい, nagai) – Long
-- 黒髪 (くろかみ, kurokami) – Black hair
-- 結ぶ (むすぶ, musubu) – To tie, to bind
-- 耳 (みみ, mimi) – Ear
-- 複数 (ふくすう, fukusuu) – Multiple, several
-- ピアス (ぴあす, piasu) – Piercing, earrings
-- 目立つ (めだつ, medatsu) – To stand out, to be noticeable
-- ハート型 (はーとがた, haatogata) – Heart-shaped
-- イヤリング (いやりんぐ, iyaringu) – Earrings
-- グレー (ぐれー, guree) – Gray
-- タンクトップ (たんくとっぷ, tankutoppu) – Tank top
-- リラックス (りらっくす, rirakkusu) – Relaxation, relaxed
-- 雰囲気 (ふんいき, fun&#039;iki) – Atmosphere, mood
-- 背景 (はいけい, haikei) – Background
-- 小さい (ちいさい, chiisai) – Small
-- クリスマスツリー (くりすますつりー, kurisumasutsurii) – Christmas tree
-- 飾り (かざり, kazari) – Decoration, ornament
-- ライト (らいと, raito) – Light
-- オーナメント (おーなめんと, oonamento) – Ornament
-- 部屋 (へや, heya) – Room
-- インテリア (いんてりあ, interia) – Interior
-- シンプル (しんぷる, shinpuru) – Simple
-- 白い (しろい, shiroi) – White
-- 壁 (かべ, kabe) – Wall
-- 通気口 (つうきこう, tsuukikou) – Ventilation opening, air vent</textarea>
+                        <div class="markdown textbox">この画像には、黒髪の女性がグレーのトップスを着てポーズをとっている様子が写っています。彼女の髪は長く、軽くウェーブがかかっており、両耳にはピアスがついています。背景には、小さな木にライトやオーナメントが飾られており、部屋の中の暖かい雰囲気が感じられます。女性はやや上を見つめる表情で、穏やかで落ち着いた雰囲気を持っています。
+
+
+- **画像** (がぞう, gazou) – Image, Picture  
+- **黒髪** (くろかみ, kurokami) – Black hair  
+- **女性** (じょせい, josei) – Woman, Female  
+- **トップス** (とっぷす, toppusu) – Top (clothing)  
+- **ポーズ** (ぽーず, pōzu) – Pose  
+- **長い** (ながい, nagai) – Long  
+- **ウェーブ** (うぇーぶ, uēbu) – Wave (wavy hair)  
+- **耳** (みみ, mimi) – Ear  
+- **ピアス** (ぴあす, piasu) – Earrings  
+- **背景** (はいけい, haikei) – Background  
+- **木** (き, ki) – Tree  
+- **ライト** (らいと, raito) – Light  
+- **オーナメント** (おーなめんと, ōnamento) – Ornament  
+- **部屋** (へや, heya) – Room  
+- **暖かい** (あたたかい, atatakai) – Warm  
+- **雰囲気** (ふんいき, fun&#039;iki) – Atmosphere, Mood  
+- **表情** (ひょうじょう, hyoujou) – Facial expression  
+- **穏やか** (おだやか, odayaka) – Calm, Gentle  
+- **落ち着いた** (おちついた, ochitsuita) – Composed, Relaxed  </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="section">
+                <div class="image-container">
+                    <img src="res/jojo.jpg" alt="Image for jojo">
+                </div>
+                <div class="divider"></div>
+                <div class="text-container">
+                    <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
+                    <div class="text-content">
+                        <div class="markdown textbox">このイラストは『ジョジョの奇妙な冒険』シリーズに登場するキャラクターたちを描いたものです。背景は明るい黄緑色で、中心には帽子をかぶった青年が座っています。彼の周囲には、ストライプのシャツを着たキャラクターや、ゴーグルをつけた人物、そして特徴的なデザインの服を着た他のキャラクターたちがいます。いくつかのキャラクターの隣には、人間のようなポーズをとった白いスタンド（能力を持つ存在）が見えます。中央の背景には緑色の大きな顔のようなオブジェクトがあり、手前には紫色の石の仮面が置かれています。キャラクターの服装やポーズは個性的で、アートスタイルは独特な線と色使いが特徴的です。
+
+
+- **画像** (がぞう, gazou) – Image, Picture  
+- **描く** (えがく, egaku) – To draw, depict  
+- **背景** (はいけい, haikei) – Background  
+- **帽子** (ぼうし, boushi) – Hat, Cap  
+- **青年** (せいねん, seinen) – Young man  
+- **周囲** (しゅうい, shuui) – Surroundings  
+- **服装** (ふくそう, fukusou) – Clothing, Outfit  
+- **特徴的** (とくちょうてき, tokuchouteki) – Characteristic, Distinctive  
+- **人物** (じんぶつ, jinbutsu) – Person, Character  
+- **能力** (のうりょく, nouryoku) – Ability, Power  
+- **存在** (そんざい, sonzai) – Existence, Being  
+- **緑色** (みどりいろ, midoriiro) – Green color  
+- **仮面** (かめん, kamen) – Mask  
+- **石** (いし, ishi) – Stone, Rock  
+- **独特** (どくとく, dokutoku) – Unique, Distinct  
+</div>
                     </div>
                 </div>
             </div>
@@ -336,6 +356,34 @@
                 button.textContent = "Show Text";
             }
         }
+
+        function convertMarkdown() {
+            let mds = document.querySelectorAll(".markdown");
+            mds.forEach(md => {
+                md.innerHTML = marked.parse(md.innerHTML);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            convertMarkdown();
+        });
+
+        function adjustHeight() {
+            document.querySelectorAll(".section").forEach(section => {
+                const img = section.querySelector("img");
+                const textContainer = section.querySelector(".text-container");
+
+                if (img && textContainer) {
+                    textContainer.style.maxHeight = img.clientHeight + "px"; // Limit height to image height
+                    textContainer.style.overflow = "auto"; // Enable scrolling if content overflows
+                }
+            });
+        }
+
+        // Run when page loads and when window resizes
+        window.addEventListener("load", adjustHeight);
+        window.addEventListener("resize", adjustHeight);
+
     </script>
 </body>
 </html>

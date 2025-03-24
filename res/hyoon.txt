@@ -1,29 +1,22 @@
-- 画像 (がぞう, gazou) – Image, picture
-- 女性 (じょせい, josei) – Woman, female
-- 室内 (しつない, shitsunai) – Indoors, inside a room
-- 自撮り (じどり, jidori) – Selfie
-- 長い (ながい, nagai) – Long
-- 黒髪 (くろかみ, kurokami) – Black hair
-- 結ぶ (むすぶ, musubu) – To tie, to bind
-- 耳 (みみ, mimi) – Ear
-- 複数 (ふくすう, fukusuu) – Multiple, several
-- ピアス (ぴあす, piasu) – Piercing, earrings
-- 目立つ (めだつ, medatsu) – To stand out, to be noticeable
-- ハート型 (はーとがた, haatogata) – Heart-shaped
-- イヤリング (いやりんぐ, iyaringu) – Earrings
-- グレー (ぐれー, guree) – Gray
-- タンクトップ (たんくとっぷ, tankutoppu) – Tank top
-- リラックス (りらっくす, rirakkusu) – Relaxation, relaxed
-- 雰囲気 (ふんいき, fun'iki) – Atmosphere, mood
-- 背景 (はいけい, haikei) – Background
-- 小さい (ちいさい, chiisai) – Small
-- クリスマスツリー (くりすますつりー, kurisumasutsurii) – Christmas tree
-- 飾り (かざり, kazari) – Decoration, ornament
-- ライト (らいと, raito) – Light
-- オーナメント (おーなめんと, oonamento) – Ornament
-- 部屋 (へや, heya) – Room
-- インテリア (いんてりあ, interia) – Interior
-- シンプル (しんぷる, shinpuru) – Simple
-- 白い (しろい, shiroi) – White
-- 壁 (かべ, kabe) – Wall
-- 通気口 (つうきこう, tsuukikou) – Ventilation opening, air vent
+この画像には、黒髪の女性がグレーのトップスを着てポーズをとっている様子が写っています。彼女の髪は長く、軽くウェーブがかかっており、両耳にはピアスがついています。背景には、小さな木にライトやオーナメントが飾られており、部屋の中の暖かい雰囲気が感じられます。女性はやや上を見つめる表情で、穏やかで落ち着いた雰囲気を持っています。
+
+
+- **画像** (がぞう, gazou) – Image, Picture  
+- **黒髪** (くろかみ, kurokami) – Black hair  
+- **女性** (じょせい, josei) – Woman, Female  
+- **トップス** (とっぷす, toppusu) – Top (clothing)  
+- **ポーズ** (ぽーず, pōzu) – Pose  
+- **長い** (ながい, nagai) – Long  
+- **ウェーブ** (うぇーぶ, uēbu) – Wave (wavy hair)  
+- **耳** (みみ, mimi) – Ear  
+- **ピアス** (ぴあす, piasu) – Earrings  
+- **背景** (はいけい, haikei) – Background  
+- **木** (き, ki) – Tree  
+- **ライト** (らいと, raito) – Light  
+- **オーナメント** (おーなめんと, ōnamento) – Ornament  
+- **部屋** (へや, heya) – Room  
+- **暖かい** (あたたかい, atatakai) – Warm  
+- **雰囲気** (ふんいき, fun'iki) – Atmosphere, Mood  
+- **表情** (ひょうじょう, hyoujou) – Facial expression  
+- **穏やか** (おだやか, odayaka) – Calm, Gentle  
+- **落ち着いた** (おちついた, ochitsuita) – Composed, Relaxed  
