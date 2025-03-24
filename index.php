@@ -27,77 +27,172 @@ $pairs = array_intersect_key($images, $texts);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image and Text Display</title>
+    <title>Blog Style Gallery</title>
     <style>
-        body { font-family: Consolas, monospace; margin: 0; overflow: hidden; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; height: 100vh; }
-        .container { width: 100vw; height: 100vh; overflow-y: hidden; display: flex; flex-direction: column; align-items: center; scroll-snap-type: y mandatory; position: relative; }
-        .section { width: 60vw; height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; scroll-snap-align: center; margin: 10vh 0; transition: transform 0.5s ease, opacity 0.5s ease; filter: blur(5px); opacity: 0.5; }
-        .active { transform: scale(1.1); filter: blur(0); opacity: 1; }
-        .card { width: 100%; padding: 20px; background: white; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); border-radius: 10px; display: flex; align-items: center; justify-content: space-between; transition: transform 0.3s ease; }
-        .card img { max-width: 40%; height: auto; border-radius: 5px; }
-        .card .text { flex: 1; padding: 20px; font-size: 1.2em; height: 40vh; overflow-y: auto; border: 1px solid #ccc; background: #f9f9f9; border-radius: 5px; }
-        .divider { width: 2px; background: black; height: 80%; margin: 0 20px; }
-        .sidebar { position: fixed; left: -250px; top: 0; width: 250px; height: 100%; background: #333; color: white; padding: 20px; transition: left 0.3s ease; overflow-y: auto; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-        .sidebar ul { list-style: none; padding: 0; width: 100%; }
-        .sidebar ul li { margin: 10px 0; cursor: pointer; padding: 10px; background: #444; border-radius: 5px; }
-        .sidebar ul li:hover { background: #555; }
-        .toggle-btn { position: fixed; left: 10px; top: 10px; background: #444; color: white; padding: 10px; cursor: pointer; border-radius: 5px; z-index: 1100; }
-        .sidebar.active { left: 0; }
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: #555;
+        }
+
+        .toggle-btn {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Main Content */
+        .container {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            max-width: 1000px;
+        }
+
+        /* Section Layout */
+        .section {
+            display: flex;
+            align-items: stretch; /* Ensure child elements take full height */
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            min-height: 250px; /* Ensures a reasonable height */
+        }
+
+        /* Image Styling */
+        .image-container {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Divider */
+        .divider {
+            width: 3px;
+            background: #ddd;
+            height: 80%;
+            margin: 0 20px;
+            border-radius: 5px;
+        }
+
+        /* Text Container */
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1; /* Take up remaining space */
+        }
+
+        .text-container h2 {
+            margin-bottom: 10px;
+        }
+
+        /* Textarea Styling */
+        .text-container textarea {
+            flex: 1; /* Makes textarea take full height */
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            resize: none; /* Prevent resizing */
+            background: #f9f9f9;
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 200px;
+            }
+
+            .toggle-btn {
+                display: block;
+            }
+
+            .container {
+                margin-left: 0;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .section {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto; /* Allow smaller sections */
+            }
+
+            .divider {
+                width: 80%;
+                height: 3px;
+                margin: 20px 0;
+            }
+
+            .text-container textarea {
+                height: 150px; /* Set fixed height for mobile */
+            }
+        }
+
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let sections = document.querySelectorAll(".section");
-            let index = 0;
-            let scrollThreshold = 40;
-            let scrollAmount = 0;
-            let sidebar = document.querySelector(".sidebar");
-            let toggleBtn = document.querySelector(".toggle-btn");
-
-            function updateActiveSection() {
-                sections.forEach((section, idx) => {
-                    section.classList.toggle("active", idx === index);
-                });
-            }
-
-            window.scrollToSection = function(idx) {
-                if (idx >= 0 && idx < sections.length) {
-                    sections[idx].scrollIntoView({ behavior: "smooth", block: "center" });
-                    index = idx;
-                    scrollAmount = 0;
-                    updateActiveSection();
-                }
-            }
-
-            document.addEventListener("wheel", function (event) {
-                let activeText = document.querySelector(".section.active .text");
-                if (activeText && (activeText.matches(":hover") || document.activeElement === activeText)) {
-                    return;
-                }
-
-                scrollAmount += event.deltaY;
-                if (scrollAmount > scrollThreshold) {
-                    scrollToSection(index + 1);
-                } else if (scrollAmount < -scrollThreshold) {
-                    scrollToSection(index - 1);
-                }
-                event.preventDefault();
-            }, { passive: false });
-
-            toggleBtn.addEventListener("click", function () {
-                sidebar.classList.toggle("active");
-            });
-
-            updateActiveSection();
-        });
-    </script>
 </head>
 <body>
-    <div class="toggle-btn">☰</div>
+    <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
     <div class="sidebar">
         <ul>
             <?php foreach ($pairs as $name => $file): ?>
                 <li onclick="scrollToSection(<?php echo array_search($name, array_keys($pairs)); ?>)">
                     <?= htmlspecialchars($name) ?>
+                    
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -105,18 +200,29 @@ $pairs = array_intersect_key($images, $texts);
     <div class="container">
         <?php foreach ($pairs as $name => $file): ?>
             <div class="section">
-                <div class="card">
+                <div class="image-container">
                     <img src="res/<?= htmlspecialchars($images[$name]) ?>" alt="<?= htmlspecialchars($name) ?>">
-                    <div class="divider"></div>
-                    <div class="text" tabindex="0">
-                        <?php 
-                        $textContent = file_get_contents("$dir/" . $texts[$name]);
-                        echo nl2br(htmlspecialchars($textContent));
-                        ?>
-                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="text-container">
+                    <h2><?= htmlspecialchars($name) ?></h2>
+                    <textarea readonly wrap="soft"><?= htmlspecialchars(file_get_contents("$dir/" . $texts[$name])) ?></textarea>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+
+    <script>
+        function scrollToSection(index) {
+            const sections = document.querySelectorAll('.section');
+            if (sections[index]) {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
