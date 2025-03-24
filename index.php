@@ -149,6 +149,8 @@ $pairs = array_intersect_key($images, $texts);
             background: #f9f9f9;
             overflow-y: auto; /* Enable scrolling */
 
+            text-align: justify;
+
             margin-top: 10px;
             margin-bottom: 10px;
 
