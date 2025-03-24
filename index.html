@@ -159,6 +159,40 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .text-content {
+                display: none; /* Hides text initially */
+            }
+
+            .toggle-text-btn {
+                display: block;
+                width: 100%;
+                margin-top: 10px;
+                padding: 10px;
+                border: none;
+                background: #007BFF;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .toggle-text-btn:focus {
+                outline: none;
+            }
+        }
+
+        /* Ensure text remains visible on desktop */
+        @media (min-width: 769px) {
+            .toggle-text-btn {
+                display: none; /* Hide button on desktop */
+            }
+
+            .text-content {
+                display: block !important; /* Ensure text is always visible */
+            }
+        }        
+
     </style>
 </head>
 <body>
@@ -176,11 +210,13 @@
     <div class="container">
                     <div class="section">
                 <div class="image-container">
-                    <img src="res/girl.jpg" alt="girl">
+                    <img src="res/girl.jpg" alt="Image for girl">
                 </div>
                 <div class="divider"></div>
                 <div class="text-container">
-                    <textarea readonly wrap="soft">- 写真 (しゃしん, shashin) – Photograph, picture
+                    <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
+                    <div class="text-content">
+                        <textarea readonly wrap="soft">- 写真 (しゃしん, shashin) – Photograph, picture
 - 桜 (さくら, sakura) – Cherry blossoms
 - 木 (き, ki) – Tree
 - 下 (した, shita) – Under, beneath
@@ -213,15 +249,18 @@
 - 春 (はる, haru) – Spring (season)
 - 優雅 (ゆうが, yūga) – Elegant, graceful
 - 雰囲気 (ふんいき, fun&#039;iki) – Atmosphere, ambiance</textarea>
+                    </div>
                 </div>
             </div>
                     <div class="section">
                 <div class="image-container">
-                    <img src="res/hyoon.jpg" alt="hyoon">
+                    <img src="res/hyoon.jpg" alt="Image for hyoon">
                 </div>
                 <div class="divider"></div>
                 <div class="text-container">
-                    <textarea readonly wrap="soft">- 画像 (がぞう, gazou) – Image, picture
+                    <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
+                    <div class="text-content">
+                        <textarea readonly wrap="soft">- 画像 (がぞう, gazou) – Image, picture
 - 女性 (じょせい, josei) – Woman, female
 - 室内 (しつない, shitsunai) – Indoors, inside a room
 - 自撮り (じどり, jidori) – Selfie
@@ -250,6 +289,7 @@
 - 白い (しろい, shiroi) – White
 - 壁 (かべ, kabe) – Wall
 - 通気口 (つうきこう, tsuukikou) – Ventilation opening, air vent</textarea>
+                    </div>
                 </div>
             </div>
             </div>
@@ -281,6 +321,16 @@
             }
         });
 
+        function toggleText(button) {
+            const textContent = button.nextElementSibling; // Get the .text-content div
+            if (textContent.style.display === "none" || textContent.style.display === "") {
+                textContent.style.display = "block";
+                button.textContent = "Hide Text";
+            } else {
+                textContent.style.display = "none";
+                button.textContent = "Show Text";
+            }
+        }
     </script>
 </body>
 </html>

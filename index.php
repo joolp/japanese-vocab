@@ -183,6 +183,40 @@ $pairs = array_intersect_key($images, $texts);
             }
         }
 
+        @media (max-width: 768px) {
+            .text-content {
+                display: none; /* Hides text initially */
+            }
+
+            .toggle-text-btn {
+                display: block;
+                width: 100%;
+                margin-top: 10px;
+                padding: 10px;
+                border: none;
+                background: #007BFF;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .toggle-text-btn:focus {
+                outline: none;
+            }
+        }
+
+        /* Ensure text remains visible on desktop */
+        @media (min-width: 769px) {
+            .toggle-text-btn {
+                display: none; /* Hide button on desktop */
+            }
+
+            .text-content {
+                display: block !important; /* Ensure text is always visible */
+            }
+        }        
+
     </style>
 </head>
 <body>
@@ -201,11 +235,14 @@ $pairs = array_intersect_key($images, $texts);
         <?php foreach ($pairs as $name => $file): ?>
             <div class="section">
                 <div class="image-container">
-                    <img src="res/<?= htmlspecialchars($images[$name]) ?>" alt="<?= htmlspecialchars($name) ?>">
+                    <img src="res/<?= htmlspecialchars($images[$name]) ?>" alt="Image for <?= htmlspecialchars($name) ?>">
                 </div>
                 <div class="divider"></div>
                 <div class="text-container">
-                    <textarea readonly wrap="soft"><?= htmlspecialchars(file_get_contents("$dir/" . $texts[$name])) ?></textarea>
+                    <button class="toggle-text-btn" onclick="toggleText(this)">Show Text</button>
+                    <div class="text-content">
+                        <textarea readonly wrap="soft"><?= htmlspecialchars(file_get_contents("$dir/" . $texts[$name])) ?></textarea>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -238,6 +275,16 @@ $pairs = array_intersect_key($images, $texts);
             }
         });
 
+        function toggleText(button) {
+            const textContent = button.nextElementSibling; // Get the .text-content div
+            if (textContent.style.display === "none" || textContent.style.display === "") {
+                textContent.style.display = "block";
+                button.textContent = "Hide Text";
+            } else {
+                textContent.style.display = "none";
+                button.textContent = "Show Text";
+            }
+        }
     </script>
 </body>
 </html>
