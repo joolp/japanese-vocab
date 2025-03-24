@@ -205,7 +205,6 @@ $pairs = array_intersect_key($images, $texts);
                 </div>
                 <div class="divider"></div>
                 <div class="text-container">
-                    <h2><?= htmlspecialchars($name) ?></h2>
                     <textarea readonly wrap="soft"><?= htmlspecialchars(file_get_contents("$dir/" . $texts[$name])) ?></textarea>
                 </div>
             </div>
