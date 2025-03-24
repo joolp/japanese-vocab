@@ -145,6 +145,9 @@ $pairs = array_intersect_key($images, $texts);
             resize: none; /* Prevent resizing */
             background: #f9f9f9;
             overflow-y: auto; /* Enable scrolling */
+
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         /* Responsive Design */
@@ -213,8 +216,10 @@ $pairs = array_intersect_key($images, $texts);
             }
 
             .text-content {
-                display: block !important; /* Ensure text is always visible */
+                display: flex !important; /* Ensure text is always visible */
+                flex: 1;
             }
+
         }        
 
     </style>
