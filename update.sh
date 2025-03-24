@@ -1,3 +1,5 @@
+#!/bin/bash
+
 php index.php > index.html
 git add .
 git commit -m ":"
