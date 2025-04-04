@@ -1,15 +1,16 @@
 <script src="{{site.baseurl}}/assets/js/switch_theme.js"></script>
 <nav>
+    {% assign p_url = site.baseurl | append: page.url %}
     <ul>
         {% for item in site.data.navigation %}
         <li>
-            {% assign p_url = site.baseurl | append: item.link %}
-            <a href="{{p_url}}"
-                {% if page.url == p_url %}
+            {% assign i_url = site.baseurl | append: item.link %}
+            <a href="{{i_url}}"
+                {% if p_url == i_url %}
                     class="current"
-                {% endif %}
-                >{{item.name}}</a>
-                {{page.url}} - {{p_url}}
+                {% endif %}>
+                {{item.name}}
+            </a>
         </li>
         {% endfor %}
         <li>
