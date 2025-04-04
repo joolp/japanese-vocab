@@ -1,0 +1,33 @@
+a.current {
+    color: red;
+}
+
+body {
+    color: black;
+    background-color: white;
+}
+
+body.dark-mode {
+    color: beige;
+    background-color: black;
+}
+
+#switch-theme {
+    color: black;
+    background: none;
+}
+
+#switch-theme.dark-mode {
+    color: beige;
+    background: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    display: inline;
+    margin-right: 20px;
+}
