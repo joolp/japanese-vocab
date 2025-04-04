@@ -1,7 +1,7 @@
 - name: Home
-  link: /japanese-vocab/
+  link: ./
 - name: About
-  link: /japanese-vocab/about.html
+  link: ./about.html
 - name: Blog
-  link: /japanese-vocab/blog.html
+  link: ./blog.html
   
