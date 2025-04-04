@@ -3,22 +3,28 @@ a.current {
 }
 
 body {
-    color: black;
-    background-color: white;
+    color: #444;
+    background-color: #EEEEEE;
+
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    padding: 0 10px
 }
 
 body.dark-mode {
-    color: beige;
-    background-color: black;
+    color: #EFEFEF;
+    background-color: #121212;
 }
 
 #switch-theme {
-    color: black;
+    color: #444;
     background: none;
 }
 
 #switch-theme.dark-mode {
-    color: beige;
+    color: #EFEFEF;
     background: none;
 }
 
@@ -30,4 +36,10 @@ ul {
 ul li {
     display: inline;
     margin-right: 20px;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2
 }
