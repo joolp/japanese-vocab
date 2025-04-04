@@ -1,5 +1,23 @@
-a.current {
-    color: red;
+/* Cool color palette from https://www.shecodes.io/palettes/1435 */
+
+a:visited { 
+	color: #222831; 
+}
+	
+a { 
+	color: #393e46; 
+}
+
+a.dark-mode:visited { 
+	color: #0092ca; 
+}
+
+a.dark-mode { 
+	color: #eeeeee; 
+}
+
+a:visited.current, a.current {
+    color: orangered;
 }
 
 body {
